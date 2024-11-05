@@ -167,7 +167,7 @@ type IfExpression struct {
 func (ie *IfExpression) expressionNode()      {}
 func (ie *IfExpression) TokenLiteral() string { return ie.Token.Literal }
 func (ie *IfExpression) String() string {
-	var out *bytes.Buffer
+	var out bytes.Buffer
 	out.WriteString("if")
 	out.WriteString(ie.Condition.String())
 	out.WriteString("")
@@ -187,7 +187,7 @@ type BlockStatement struct {
 func (bs *BlockStatement) statementNode()       {}
 func (bs *BlockStatement) TokenLiteral() string { return bs.Token.Literal }
 func (bs *BlockStatement) String() string {
-	var out *bytes.Buffer
+	var out bytes.Buffer
 	for _, s := range bs.Statements {
 		out.WriteString(s.String())
 	}
@@ -203,7 +203,7 @@ type FunctionLiteral struct {
 func (fl *FunctionLiteral) expressionNode()      {}
 func (fl *FunctionLiteral) TokenLiteral() string { return fl.Token.Literal }
 func (fl *FunctionLiteral) String() string {
-	var out *bytes.Buffer
+	var out bytes.Buffer
 	params := []string{}
 	for _, p := range fl.Parameters {
 		params = append(params, p.String())
