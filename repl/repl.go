@@ -13,6 +13,9 @@ import (
 const PROMPT = ">> "
 
 func Start(in io.Reader, out io.Writer) {
+	fmt.Println("Hello! This is the Monkey programming language!")
+	fmt.Println("Feel free to type in commands")
+
 	scanner := bufio.NewScanner(in)
 	env := object.NewEnvironment()
 
