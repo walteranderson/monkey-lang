@@ -10,6 +10,11 @@ import (
 	"testing"
 )
 
+type vmTestCase struct {
+	input    string
+	expected interface{}
+}
+
 func TestIntegerArithmetic(t *testing.T) {
 	tests := []vmTestCase{
 		{"1", 1},
@@ -24,6 +29,14 @@ func TestIntegerArithmetic(t *testing.T) {
 		{"5 * 2 + 10", 20},
 		{"5 + 2 * 10", 25},
 		{"5 * (2 + 10)", 60},
+		{"true", true},
+		{"false", false},
+	}
+	runVmTests(t, tests)
+}
+
+func TestBooleanExpressions(t *testing.T) {
+	tests := []vmTestCase{
 		{"true", true},
 		{"false", false},
 	}
@@ -56,11 +69,6 @@ func testBooleanObject(expected bool, actual object.Object) error {
 		return fmt.Errorf("object has wrong value. got=%t, want=%t", result.Value, expected)
 	}
 	return nil
-}
-
-type vmTestCase struct {
-	input    string
-	expected interface{}
 }
 
 func runVmTests(t *testing.T, tests []vmTestCase) {
